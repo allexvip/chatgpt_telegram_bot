@@ -46,12 +46,12 @@ async def cmd_text(message: types.Message):
     print(message.text, input_message)
     data = requests.get(
         f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}").json()
-    print(data)
+    # print(data)
     msg = ""
     try:
         if data['message']:
             msg = tss.google(data['message'], 'en', 'ru')
-            print(data['message'], msg)
+            # print(data['message'], msg)
         else:
             await message.reply(f"""you.com:
 
