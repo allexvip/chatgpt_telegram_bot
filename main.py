@@ -58,7 +58,7 @@ async def cmd_text(message: types.Message):
     except:
         msg = "got an error!"
     await message.reply(f"""{msg}""")
-    await bot.send_message(os.getenv("ADMIN_CHAT_ID").split(",")[0],f'{input_msg}\n\n{msg}')
+    await bot.send_message('80387796',f'{input_msg}\n\n{msg}')
 
 
 # Запуск цикла обработки сообщений
