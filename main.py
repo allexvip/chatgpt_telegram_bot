@@ -55,14 +55,10 @@ async def cmd_text(message: types.Message):
             msg = data['message']
             # print(data['message'], msg)
         else:
-            await message.reply(f"""you.com:
-
-Я не знаю.""")
+            await message.reply(f"""Я не знаю.""")
     except:
         msg = "got an error!"
-    await message.reply(f"""you.com:
-
-{msg}""")
+    await message.reply(f"""{msg}""")
     await bot.send_message(os.getenv("ADMIN_CHAT_ID").split(",")[0],f'{input_msg}\n\n{msg}')
 
 
