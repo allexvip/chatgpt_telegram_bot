@@ -38,18 +38,24 @@ async def cmd_text(message: types.Message):
     """
     Обработчик на получение текста
     """
-    await bot.send_chat_action(message.from_user.id,"typing")
+    # await bot.send_chat_action(message.from_user.id,"choose_sticker")
+    await bot.send_chat_action(message.from_user.id, "typing")
     betterapi_token = os.getenv("BETTERAPI_TOKEN")
-    imput_msg = message.text
-    input_message = tss.google(imput_msg, 'ru', 'en')
+    input_msg = message.text
+    input_message = tss.google(input_msg, 'ru', 'en')
     print(message.text, input_message)
     data = requests.get(
         f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}").json()
     print(data)
+    msg = ""
     try:
         if data['message']:
             msg = tss.google(data['message'], 'en', 'ru')
             print(data['message'], msg)
+        else:
+            await message.reply(f"""you.com:
+
+Я не знаю.""")
     except:
         msg = "got an error!"
     await message.reply(f"""you.com:
@@ -59,4 +65,4 @@ async def cmd_text(message: types.Message):
 
 # Запуск цикла обработки сообщений
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, skip_updates=False)
