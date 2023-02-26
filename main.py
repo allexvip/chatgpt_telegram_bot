@@ -44,7 +44,7 @@ async def cmd_text(message: types.Message):
     input_msg = message.text
     # input_message = tss.google(input_msg, 'ru', 'en')
     input_message = input_msg
-    print(message.text, input_message)
+    # print(message.text, input_message)
     data = requests.get(
         f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}").json()
     # print(data)
