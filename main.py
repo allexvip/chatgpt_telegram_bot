@@ -61,7 +61,7 @@ async def cmd_text(message: types.Message):
     await message.reply(f"""you.com:
 
 {msg}""")
-    await bot.send_message()
+    await bot.send_message(os.getenv("ADMIN_CHAT_ID").split(",")[0],f'{input_msg}\n\n{msg}')
 
 
 # Запуск цикла обработки сообщений
