@@ -3,8 +3,8 @@ from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
 import os
 import logging
-import translators as ts
-import translators.server as tss
+# import translators as ts
+# import translators.server as tss
 import requests
 
 load_dotenv()
@@ -42,7 +42,8 @@ async def cmd_text(message: types.Message):
     await bot.send_chat_action(message.from_user.id, "typing")
     betterapi_token = os.getenv("BETTERAPI_TOKEN")
     input_msg = message.text
-    input_message = tss.google(input_msg, 'ru', 'en')
+    # input_message = tss.google(input_msg, 'ru', 'en')
+    input_message = input_msg
     print(message.text, input_message)
     data = requests.get(
         f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}").json()
@@ -50,7 +51,8 @@ async def cmd_text(message: types.Message):
     msg = ""
     try:
         if data['message']:
-            msg = tss.google(data['message'], 'en', 'ru')
+            # msg = tss.google(data['message'], 'en', 'ru')
+            msg = data['message']
             # print(data['message'], msg)
         else:
             await message.reply(f"""you.com:
