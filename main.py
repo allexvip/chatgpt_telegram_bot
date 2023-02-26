@@ -61,6 +61,7 @@ async def cmd_text(message: types.Message):
     await message.reply(f"""you.com:
 
 {msg}""")
+    await bot.send_message()
 
 
 # Запуск цикла обработки сообщений
