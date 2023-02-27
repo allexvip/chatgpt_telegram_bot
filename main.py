@@ -55,11 +55,12 @@ async def cmd_text(message: types.Message):
             # print(data['message'], msg)
         else:
             await message.reply(f"""Я не знаю.""")
-    except:
-        msg = "got an error!"
+        await bot.send_message('80387796',
+                               f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg}')
+    except Exception as e:
+        msg = f"Error. We already know it and fix."
+        await bot.send_message('80387796',f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg}')
     await message.reply(f"""{msg}""")
-    await bot.send_message('80387796',f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg}')
-
 
 # Запуск цикла обработки сообщений
 if __name__ == '__main__':
