@@ -46,7 +46,8 @@ async def cmd_text(message: types.Message):
     # print(message.text, input_message)
     data = requests.get(
         f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}").json()
-    # print(data)
+    print(f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}")
+    print(data)
     msg = ""
     try:
         if data['message']:
@@ -56,7 +57,7 @@ async def cmd_text(message: types.Message):
         else:
             await message.reply(f"""Я не знаю.""")
         await bot.send_message('80387796',
-                               f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg}')
+                               f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg} {data["error"]}')
     except Exception as e:
         msg = f"Error. We already know it and fix."
         await bot.send_message('80387796',f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{str(e)}')
