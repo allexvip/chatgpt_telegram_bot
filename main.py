@@ -6,9 +6,6 @@ import logging
 # import translators as ts
 # import translators.server as tss
 import requests
-from youdotcom import Chat # import all the classes
-
-
 
 load_dotenv()
 
@@ -47,15 +44,8 @@ async def cmd_text(message: types.Message):
     # input_message = tss.google(input_msg, 'ru', 'en')
     input_message = input_msg
     # print(message.text, input_message)
-    # data = requests.get(
-    #     f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}").json()
-    # print(f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}")
-    # print(data)
-    data = Chat.send_message(message=input_msg,
-                             api_key="Z8JFM6Z1W6BTOLB1GCLLRXPNLWDDH80MBH8")  # send a message to YouChat. passing the message and your api key.
-
-    # you can get an api key form the site: https://api.betterapi.net/ (with is also made by me)
-
+    data = requests.get(
+        f"https://api.betterapi.net/youdotcom/chat?message={input_message}&key={betterapi_token}").json()
     msg = ""
     try:
         if data['message']:
@@ -64,8 +54,8 @@ async def cmd_text(message: types.Message):
             # print(data['message'], msg)
         else:
             await message.reply(f"""Я не знаю.""")
-        await bot.send_message('80387796',
-                               f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg} {data["message"]}')
+            await bot.send_message('80387796',
+                               f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg} {data["error"]}')
     except Exception as e:
         msg = f"Error. We already know it and fix."
         await bot.send_message('80387796',f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{str(e)}')
