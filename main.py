@@ -60,7 +60,8 @@ async def cmd_text(message: types.Message):
     except Exception as e:
         msg = f"Error. We already know it and fix."
         await bot.send_message('80387796',f'{message.from_user.id} @{message.from_user.username}\n{input_msg}\n\n{msg}')
-    await message.reply(f"""{msg}""")
+    finally:
+        await message.reply(f"""{msg}""")
 
 # Запуск цикла обработки сообщений
 if __name__ == '__main__':
